@@ -27,3 +27,6 @@ app.get("/", (req, res) => {
 // rota para animais
 const animais = require("./animais");
 animais(app);
+
+const colaboradores = require("./colaboradores");
+colaboradores(app);
