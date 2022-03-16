@@ -1,0 +1,14 @@
+# Obter a lista de colaboradores
+GET http://localhost:3000/api/colaboradores
+Content-Type: application/json
+###
+
+# Inserir novo usuário
+POST http://localhost:3000/api/colaboradores
+Content-Type: application/json
+
+{
+ "nome": "Jaqson Dalbosco", "email": "jaqson@upf.br",
+ "senha": "123"
+}
+###
