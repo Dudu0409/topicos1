@@ -1,0 +1,44 @@
+@apiUrl = http://localhost:3000/api
+# Obter a lista de requisicoes
+GET {{apiUrl}}/requisicoes
+Content-Type: application/json
+###
+
+# Inserir nova requisicao
+POST {{apiUrl}}/requisicoes
+Content-Type: application/json
+
+{
+ "titulo": "Requisição de Conserto", "descricao": "Necessito de Conserto para meu veículo",
+ "status": "Recebido", "prazoAtendimento": "2022-04-20", 
+ "tipoRequisicao": "623a68d512b4334788a0094b", "solicitante": "623a669c493851463454da9f"
+}
+###
+
+# Alterar requisicao
+PUT {{apiUrl}}/requisicoes
+Content-Type: application/json
+
+{
+ "_id": "623a741d99f2732772f54cc4",
+ "titulo": "Requisição de Conserto", 
+ "descricao": "Necessito de Conserto para meu veículo",
+ "status": "Em andamento", 
+ "prazoAtendimento": "2022-04-20" 
+}
+
+###
+# Excluir uma requisicao
+DELETE {{apiUrl}}/requisicoes/623a741d99f2732772f54cc4
+Content-Type: application/json
+###
+
+# Obter pelo id de requisicao
+GET {{apiUrl}}/requisicoes/623a74c8610b3205e97be88b
+Content-Type: application/json
+
+###
+# Obter requisicao filtrando
+GET {{apiUrl}}/requisicoes/filtro/Recebido
+Content-Type: application/json
+###

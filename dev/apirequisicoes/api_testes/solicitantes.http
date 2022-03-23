@@ -1,0 +1,42 @@
+@apiUrl = http://localhost:3000/api
+# Obter a lista de solicitantes
+GET {{apiUrl}}/solicitantes
+Content-Type: application/json
+###
+
+# Inserir novo solicitante
+POST {{apiUrl}}/solicitantes
+Content-Type: application/json
+
+{
+ "nome": "Fulano", "email": "fulano@outlook.com",
+ "senha": "123"
+}
+###
+
+# Alterar solicitante
+PUT {{apiUrl}}/solicitantes
+Content-Type: application/json
+
+{
+ "_id": "623a669c493851463454da9f",
+ "nome": "Fulano alterado",
+ "email": "fulano@teste.com",
+ "senha": "321"
+}
+
+###
+# Excluir um solicitante
+DELETE {{apiUrl}}/solicitantes/623a669c493851463454da9f
+Content-Type: application/json
+###
+
+# Obter pelo id de solicitante
+GET {{apiUrl}}/solicitantes/623a669c493851463454da9f
+Content-Type: application/json
+
+###
+# Obter solicitante filtrando
+GET {{apiUrl}}/solicitantes/filtro/fulano
+Content-Type: application/json
+###
