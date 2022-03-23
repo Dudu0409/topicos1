@@ -3,12 +3,39 @@ GET http://localhost:3000/api/colaboradores
 Content-Type: application/json
 ###
 
-# Inserir novo usuário
+# Inserir novo colaborador
 POST http://localhost:3000/api/colaboradores
 Content-Type: application/json
 
 {
- "nome": "Jaqson Dalbosco", "email": "jaqson@upf.br",
+ "nome": "Eduardo Bonamigo Bianchetti", "email": "185961@upf.br",
  "senha": "123"
 }
+###
+
+# Alterar colaborador
+PUT http://localhost:3000/api/colaboradores
+Content-Type: application/json
+
+{
+ "_id": "62313ad4979154f743b60f12",
+ "nome": "Jaqson alterado",
+ "email": "jaqson@teste.com",
+ "senha": "321"
+}
+
+###
+# Excluir um colaborador
+DELETE http://localhost:3000/api/colaboradores/623a58372ddf422aed73b525
+Content-Type: application/json
+###
+
+# Obter pelo id de colaborador
+GET http://localhost:3000/api/colaboradores/623a58372ddf422aed73b525
+Content-Type: application/json
+
+###
+# Obter colaborador filtrando
+GET http://localhost:3000/api/colaboradores/filtro/admin
+Content-Type: application/json
 ###
