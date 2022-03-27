@@ -1,0 +1,45 @@
+@apiUrl = http://localhost:3000/api
+# Obter a lista de atividades
+GET {{apiUrl}}/atividades
+Content-Type: application/json
+###
+
+# Inserir nova atividade
+POST {{apiUrl}}/atividades
+Content-Type: application/json
+
+{
+ "titulo": "Velas de Ignição", "descricao": "Trocar Velas de Ignição",
+ "status": "Recebido", "prazo": "2022-04-20", "agendaInicio": "2022-04-20",
+ "dataHoraTermino": "2022-04-20",
+ "Requisicao": "6240aa80bb1b289857f69cd4",
+ "Colaborador": "6240a975bb1b289857f69cb9"
+}
+###
+
+# Alterar atividade
+PUT {{apiUrl}}/atividades
+Content-Type: application/json
+
+{
+ "_id": "6240aff00dbd0bec47d0bdc8",
+ "titulo": "Velas de Ignição", "descricao": "Trocar Velas de Ignição",
+ "status": "Em andamento", "prazo": "2022-04-20", "agendaInicio": "2022-04-20",
+ "dataHoraTermino": "2022-04-20"
+}
+
+###
+# Excluir uma atividade
+DELETE {{apiUrl}}/atividades/6240aff00dbd0bec47d0bdc8
+Content-Type: application/json
+###
+
+# Obter pelo id de atividade
+GET {{apiUrl}}/atividades/6240aff00dbd0bec47d0bdc8
+Content-Type: application/json
+
+###
+# Obter atividade filtrando
+GET {{apiUrl}}/atividades/filtro/Andamento
+Content-Type: application/json
+###

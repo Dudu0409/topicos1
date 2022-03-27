@@ -11,7 +11,7 @@ Content-Type: application/json
 {
  "titulo": "Requisição de Conserto", "descricao": "Necessito de Conserto para meu veículo",
  "status": "Recebido", "prazoAtendimento": "2022-04-20", 
- "tipoRequisicao": "623a68d512b4334788a0094b", "solicitante": "623a669c493851463454da9f"
+ "tipoRequisicao": "6240a99cbb1b289857f69cbf", "solicitante": "6240a987bb1b289857f69cbc"
 }
 ###
 
@@ -20,7 +20,7 @@ PUT {{apiUrl}}/requisicoes
 Content-Type: application/json
 
 {
- "_id": "623a741d99f2732772f54cc4",
+ "_id": "6240aa80bb1b289857f69cd4",
  "titulo": "Requisição de Conserto", 
  "descricao": "Necessito de Conserto para meu veículo",
  "status": "Em andamento", 
@@ -29,16 +29,16 @@ Content-Type: application/json
 
 ###
 # Excluir uma requisicao
-DELETE {{apiUrl}}/requisicoes/623a741d99f2732772f54cc4
+DELETE {{apiUrl}}/requisicoes/6240aa7bbb1b289857f69cd2
 Content-Type: application/json
 ###
 
 # Obter pelo id de requisicao
-GET {{apiUrl}}/requisicoes/623a74c8610b3205e97be88b
+GET {{apiUrl}}/requisicoes/6240aa80bb1b289857f69cd4
 Content-Type: application/json
 
 ###
 # Obter requisicao filtrando
-GET {{apiUrl}}/requisicoes/filtro/Recebido
+GET {{apiUrl}}/requisicoes/filtro/Andamento
 Content-Type: application/json
 ###

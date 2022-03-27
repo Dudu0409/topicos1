@@ -9,7 +9,7 @@ POST {{apiUrl}}/tiposrequisicao
 Content-Type: application/json
 
 {
- "descricao": "Concerto"
+ "descricao": "Conserto"
 }
 ###
 
