@@ -1,0 +1,36 @@
+﻿Mongo:
+use apirequisicoes
+
+db.createUser( {
+ user: "admin",
+ pwd: "admin",
+ roles: [ { role: "userAdminAnyDatabase", db: "admin" },
+ { role: "dbAdminAnyDatabase", db: "admin" },
+ { role: "readWriteAnyDatabase", db: "admin" } ]
+ } );
+
+Mongo .bat para iniciar:
+mongod --port 27018 --dbpath C:\Users\185961\Documents\topicos1\mongo\baserequisicoes --auth / com autenticação
+mongod --port 27018 --dbpath C:\Users\185961\Documents\topicos1\mongo\baserequisicoes / sem autenticação
+
+Mongo direto CMD:
+mongo --port 27018 / sem autenticação
+mongo -u "admin" -p "admin" --authenticationDatabase "baserequisicoes" --port 27018 / com autenticação
+
+compass e node: mongodb://admin:admin@localhost:27018/baserequisicoes?authSource=baserequisicoes
+
+Dependências Node:
+npm install express --save
+npm install mongodb --save
+npm install nodemon --save-dev
+npm install cors --save
+npm install mongoose --save
+npm install / Reinstalar
+
+React:
+Criar Projeto
+npx create-react-app app-intro
+Rodar Projeto
+npm start
+npm install bootstrap
+

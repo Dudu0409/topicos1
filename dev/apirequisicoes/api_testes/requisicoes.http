@@ -11,7 +11,7 @@ Content-Type: application/json
 {
  "titulo": "Requisição de Conserto", "descricao": "Necessito de Conserto para meu veículo",
  "status": "Recebido", "prazoAtendimento": "2022-04-20", 
- "tipoRequisicao": "6240a99cbb1b289857f69cbf", "solicitante": "6240a987bb1b289857f69cbc"
+ "tipoRequisicao": "624389ffbd602ec54525b3dc", "solicitante": "624389e7bd602ec54525b3d7"
 }
 ###
 
