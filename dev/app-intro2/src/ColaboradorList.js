@@ -1,11 +1,11 @@
-const UsuarioList = (props) => {
+const ColaboradorList = (props) => {
   return (
     <div>
-      <h4>Listagem de Usuários</h4>
+      <h4>Listagem de Colaboradores</h4>
       <button
         onClick={props.onClickAtualizar}
         type="button"
-        className="btn btn-success btn-sm"
+        className="btn btn-primary btn-sm"
       >
         Atualizar Lista
       </button>
@@ -20,19 +20,19 @@ const UsuarioList = (props) => {
             <th>Id</th>
             <th>Nome</th>
             <th>Email</th>
-            <th>Celular</th>
+            <th>Senha</th>
             <th>Operações</th>
           </tr>
         </thead>
         <tbody>
-          {props.usuario.length > 0 ? (
-            props.usuario.map((o, index) => (
+          {props.colaborador.length > 0 ? (
+            props.colaborador.map((o, index) => (
               <tr key={index}>
                 <td>{index}</td>
                 <td>{o.id}</td>
                 <td>{o.nome}</td>
                 <td>{o.email}</td>
-                <td>{o.celular}</td>
+                <td>{o.senha}</td>
                 <td>
                   <button
                     onClick={() => props.editar(o.id)}
@@ -43,7 +43,7 @@ const UsuarioList = (props) => {
 
                   <button
                     onClick={() => props.excluir(o.id)}
-                    className="btn btn-danger"
+                    className="btn btn-danger btn-sm"
                   >
                     Excluir
                   </button>
@@ -52,7 +52,7 @@ const UsuarioList = (props) => {
             ))
           ) : (
             <tr>
-              <td colSpan={5}>Nenhum usuário.</td>
+              <td colSpan={5}>Nenhum colaborador.</td>
             </tr>
           )}
         </tbody>
@@ -60,4 +60,4 @@ const UsuarioList = (props) => {
     </div>
   );
 };
-export default UsuarioList;
+export default ColaboradorList;
