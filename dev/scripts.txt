@@ -39,3 +39,5 @@ npm install axios --save
 npm install primereact --save
 npm install primeicons --save
 npm install react-transition-group --save
+Instalar react-router-dom: 
+npm install --save react-router-dom
