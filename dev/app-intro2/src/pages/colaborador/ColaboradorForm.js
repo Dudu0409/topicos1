@@ -36,22 +36,26 @@ const ColaboradorForm = (props) => {
           value={props.colaborador.senha}
           onChange={handleInputChange}
         />
+        <p />
       </div>
       <div className="form-group">
-        <button
-          type="button"
-          onClick={props.salvar}
-          className="btn btn-primary btn-sm"
-        >
-          Salvar
-        </button>
-        <button
-          type="button"
-          onClick={props.cancelar}
-          className="btn btn-primary btn-sm"
-        >
-          Cancelar
-        </button>
+        <div style={{ textAlign: "center" }}>
+          <button
+            type="button"
+            onClick={props.salvar}
+            className="btn btn-primary btn-sm"
+          >
+            <i class="pi pi-save" />
+          </button>
+          <span> </span>
+          <button
+            type="button"
+            onClick={props.cancelar}
+            className="btn btn-primary btn-sm"
+          >
+            <i class="pi pi-undo" />
+          </button>
+        </div>
       </div>
     </form>
   );
