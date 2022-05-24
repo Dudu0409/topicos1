@@ -53,7 +53,7 @@ function ColaboradorCon() {
           onClickAtualizar();
           toastRef.current.show({
             severity: "success",
-            summary: "Salvou",
+            summary: "Salvou!",
             life: 2000,
           });
         })
@@ -72,7 +72,7 @@ function ColaboradorCon() {
           onClickAtualizar();
           toastRef.current.show({
             severity: "success",
-            summary: "Salvou",
+            summary: "Alterado!",
             life: 2000,
           });
         })
@@ -115,7 +115,7 @@ function ColaboradorCon() {
         onClickAtualizar();
         toastRef.current.show({
           severity: "success",
-          summary: "Excluído",
+          summary: "Excluído!",
           life: 2000,
         });
       })

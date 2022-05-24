@@ -35,7 +35,7 @@ function Menu() {
       },
     },
     {
-      label: "Cadastro",
+      label: "Cadastros",
       icon: "pi pi-fw pi-file",
       items: [
         {
