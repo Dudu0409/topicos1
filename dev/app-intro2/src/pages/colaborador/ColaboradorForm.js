@@ -45,7 +45,7 @@ const ColaboradorForm = (props) => {
             onClick={props.salvar}
             className="btn btn-primary btn-sm"
           >
-            <i class="pi pi-save" />
+            <i className="pi pi-save" />
           </button>
           <span> </span>
           <button
@@ -53,7 +53,7 @@ const ColaboradorForm = (props) => {
             onClick={props.cancelar}
             className="btn btn-primary btn-sm"
           >
-            <i class="pi pi-undo" />
+            <i className="pi pi-undo" />
           </button>
         </div>
       </div>

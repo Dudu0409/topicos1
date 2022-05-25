@@ -9,6 +9,11 @@ import { Menubar } from "primereact/menubar";
 
 const Home = lazy(() => import("./pages/home/Home"));
 const ColaboradorCon = lazy(() => import("./pages/colaborador/ColaboradorCon"));
+const SolicitanteCon = lazy(() => import("./pages/solicitante/SolicitanteCon"));
+const TipoRequisicaoCon = lazy(() =>
+  import("./pages/tipoRequisicao/TipoRequisicaoCon")
+);
+const RequisicaoCon = lazy(() => import("./pages/requisicao/RequisicaoCon"));
 
 function App() {
   return (
@@ -18,6 +23,9 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/colaboradores" element={<ColaboradorCon />} />
+          <Route path="/solicitantes" element={<SolicitanteCon />} />
+          <Route path="/tiposRequisicoes" element={<TipoRequisicaoCon />} />
+          <Route path="/requisicoes" element={<RequisicaoCon />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
@@ -43,6 +51,27 @@ function Menu() {
           icon: "pi pi-fw pi-user",
           command: () => {
             navigate("/colaboradores");
+          },
+        },
+        {
+          label: "Solicitantes",
+          icon: "pi pi-fw pi-user-plus",
+          command: () => {
+            navigate("/solicitantes");
+          },
+        },
+        {
+          label: "Tipos de Requisições",
+          icon: "pi pi-fw pi-palette",
+          command: () => {
+            navigate("/tiposRequisicoes");
+          },
+        },
+        {
+          label: "Requisições",
+          icon: "pi pi-fw pi-ticket",
+          command: () => {
+            navigate("/requisicoes");
           },
         },
       ],

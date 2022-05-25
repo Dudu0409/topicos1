@@ -18,11 +18,11 @@ const ColaboradorList = (props) => {
           onClick={props.onClickAtualizar}
           className="btn btn-primary btn-sm"
         >
-          <i class="pi pi-refresh" />
+          <i className="pi pi-refresh" />
         </button>
         <span> </span>
         <button className="btn btn-success btn-sm" onClick={props.inserir}>
-          <i class="pi pi-plus-circle" />
+          <i className="pi pi-plus-circle" />
         </button>
       </div>
 
@@ -54,14 +54,14 @@ const ColaboradorList = (props) => {
                     onClick={() => props.editar(row._id)}
                     className="btn btn-warning btn-sm"
                   >
-                    <i class="pi pi-pencil"></i>
+                    <i className="pi pi-pencil"></i>
                   </button>
                   <span> </span>
                   <button
                     onClick={() => props.excluir(row._id)}
                     className="btn btn-danger btn-sm"
                   >
-                    <i class="pi pi-trash"></i>
+                    <i className="pi pi-trash"></i>
                   </button>
                 </>
               );
