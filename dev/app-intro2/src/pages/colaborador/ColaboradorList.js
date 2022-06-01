@@ -14,16 +14,19 @@ const ColaboradorList = (props) => {
     <div className="App">
       <h4>Listagem de Colaboradores</h4>
       <div style={{ margin: "10px" }}>
-        <button
+        <Button
+          type="button"
+          icon="pi pi-refresh"
+          className="p-button-rounded p-button-info"
           onClick={props.onClickAtualizar}
-          className="btn btn-primary btn-sm"
-        >
-          <i className="pi pi-refresh" />
-        </button>
+        ></Button>
         <span> </span>
-        <button className="btn btn-success btn-sm" onClick={props.inserir}>
-          <i className="pi pi-plus-circle" />
-        </button>
+        <Button
+          type="button"
+          icon="pi pi-plus-circle"
+          className="p-button-rounded p-button-info"
+          onClick={props.inserir}
+        ></Button>
       </div>
 
       <div className="card">
@@ -44,25 +47,24 @@ const ColaboradorList = (props) => {
           <Column field="_id" header="Id" sortable></Column>
           <Column field="nome" header="Nome" sortable filter></Column>
           <Column field="email" header="E-mail" sortable filter></Column>
-          <Column field="senha" header="Senha" sortable></Column>
           <Column
             header="Operações"
             body={(row) => {
               return (
                 <>
-                  <button
+                  <Button
+                    type="button"
+                    icon="pi pi-pencil"
+                    className="p-button-rounded p-button-info"
                     onClick={() => props.editar(row._id)}
-                    className="btn btn-warning btn-sm"
-                  >
-                    <i className="pi pi-pencil"></i>
-                  </button>
+                  ></Button>
                   <span> </span>
-                  <button
+                  <Button
+                    type="button"
+                    icon="pi pi-trash"
+                    className="p-button-rounded p-button-info"
                     onClick={() => props.excluir(row._id)}
-                    className="btn btn-danger btn-sm"
-                  >
-                    <i className="pi pi-trash"></i>
-                  </button>
+                  ></Button>
                 </>
               );
             }}

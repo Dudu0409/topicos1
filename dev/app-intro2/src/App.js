@@ -61,17 +61,17 @@ function Menu() {
           },
         },
         {
-          label: "Tipos de Requisições",
-          icon: "pi pi-fw pi-palette",
-          command: () => {
-            navigate("/tiposRequisicoes");
-          },
-        },
-        {
           label: "Requisições",
           icon: "pi pi-fw pi-ticket",
           command: () => {
             navigate("/requisicoes");
+          },
+        },
+        {
+          label: "Tipos de Requisições",
+          icon: "pi pi-fw pi-palette",
+          command: () => {
+            navigate("/tiposRequisicoes");
           },
         },
       ],
