@@ -10,20 +10,34 @@ const RequisicaoList = (props) => {
     <Button type="button" icon="pi pi-cloud" className="p-button-text" />
   );
 
+  const dateBodyTemplate = (rowData) => {
+    return new Intl.DateTimeFormat("pt-BR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    }).format(new Date(rowData.dataHoraCriada));
+  };
+
   return (
     <div className="App">
       <h4>Listagem de Requisições</h4>
       <div style={{ margin: "10px" }}>
-        <button
+        <Button
+          type="button"
+          icon="pi pi-refresh"
+          className="p-button-rounded p-button-info"
           onClick={props.onClickAtualizar}
-          className="btn btn-primary btn-sm"
-        >
-          <i className="pi pi-refresh" />
-        </button>
+        ></Button>
         <span> </span>
-        <button className="btn btn-success btn-sm" onClick={props.inserir}>
-          <i className="pi pi-plus-circle" />
-        </button>
+        <Button
+          type="button"
+          icon="pi pi-plus-circle"
+          className="p-button-rounded p-button-info"
+          onClick={props.inserir}
+        ></Button>
       </div>
 
       <div className="card">
@@ -44,8 +58,8 @@ const RequisicaoList = (props) => {
           <Column
             field="dataHoraCriada"
             header="Data e Hora de Criação"
+            body={dateBodyTemplate}
             sortable
-            filter
           ></Column>
           <Column field="titulo" header="Título" sortable filter></Column>
           <Column
@@ -66,19 +80,19 @@ const RequisicaoList = (props) => {
             body={(row) => {
               return (
                 <>
-                  <button
+                  <Button
+                    type="button"
+                    icon="pi pi-pencil"
+                    className="p-button-rounded p-button-info"
                     onClick={() => props.editar(row._id)}
-                    className="btn btn-warning btn-sm"
-                  >
-                    <i className="pi pi-pencil"></i>
-                  </button>
+                  ></Button>
                   <span> </span>
-                  <button
+                  <Button
+                    type="button"
+                    icon="pi pi-trash"
+                    className="p-button-rounded p-button-info"
                     onClick={() => props.excluir(row._id)}
-                    className="btn btn-danger btn-sm"
-                  >
-                    <i className="pi pi-trash"></i>
-                  </button>
+                  ></Button>
                 </>
               );
             }}

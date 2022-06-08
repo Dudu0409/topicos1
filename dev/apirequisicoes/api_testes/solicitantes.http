@@ -19,10 +19,10 @@ PUT {{apiUrl}}/solicitantes
 Content-Type: application/json
 
 {
- "_id": "623a669c493851463454da9f",
- "nome": "Fulano alterado",
- "email": "fulano@teste.com",
- "senha": "321"
+ "_id": "624389e7bd602ec54525b3d7",
+ "nome": "Fulano",
+ "email": "fulano@upf.br",
+ "senha": "123"
 }
 
 ###
@@ -39,4 +39,14 @@ Content-Type: application/json
 # Obter solicitante filtrando
 GET {{apiUrl}}/solicitantes/filtro/fulano
 Content-Type: application/json
+###
+
+# Autenticação de colaborador
+POST {{apiUrl}}/solicitantes/login
+Content-Type: application/json
+
+{
+ "email": "fulano@upf.br",
+ "senha": "123"
+}
 ###

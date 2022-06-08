@@ -1,0 +1,10 @@
+@apiUrl = http://localhost:3000/api
+# Autenticação de colaborador
+POST {{apiUrl}}/login
+Content-Type: application/json
+
+{
+ "email": "185961@upf.br",
+ "senha": "123"
+}
+###

@@ -81,7 +81,7 @@ const ColaboradorForm = (props) => {
                   },
                   minLength: {
                     value: 10,
-                    message: "O nome deve ter no mínimo 10 caracteres!",
+                    message: "O email deve ter no mínimo 10 caracteres!",
                   },
                 })}
                 defaultValue={props.colaborador.email}

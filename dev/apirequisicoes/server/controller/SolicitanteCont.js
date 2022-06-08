@@ -1,4 +1,5 @@
 const Solicitante = require("../model/SolicitanteSchema");
+const bcrypt = require("bcrypt");
 module.exports = {
   listar: async (req, res) => {
     Solicitante.find((err, objetos) => {
@@ -8,12 +9,16 @@ module.exports = {
 
   incluir: async (req, res) => {
     let obj = new Solicitante(req.body);
+    const salt = await bcrypt.genSalt(Number(process.env.BCRYPT_SALT));
+    obj.senha = await bcrypt.hash(obj.senha, salt);
     obj.save((err, obj) => {
       err ? res.status(400).send(err) : res.status(200).json(obj);
     });
   },
   alterar: async (req, res) => {
     let obj = new Solicitante(req.body);
+    const salt = await bcrypt.genSalt(Number(process.env.BCRYPT_SALT));
+    obj.senha = await bcrypt.hash(obj.senha, salt);
     Solicitante.updateOne({ _id: obj._id }, obj, function (err) {
       err ? res.status(400).send(err) : res.status(200).json(obj);
     });

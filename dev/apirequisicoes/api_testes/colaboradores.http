@@ -1,7 +1,10 @@
 @apiUrl = http://localhost:3000/api
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjcxYzU1NmUxMGUxZTJhOTk5NGZjMGYiLCJub21lIjoiRWR1YXJkbyBCb25hbWlnbyBCaWFuY2hldHRpIiwiaWF0IjoxNjU0NjQ2OTg4LCJleHAiOjE2NTQ2NTA1ODh9.kFbmbq22n-d7Gx0Gp4AZLa22VjU7l5RQ-PVV_3oT8f4
+
 # Obter a lista de colaboradores
 GET {{apiUrl}}/colaboradores
 Content-Type: application/json
+x-auth-token: {{authToken}}
 ###
 
 # Inserir novo colaborador
@@ -19,10 +22,10 @@ PUT {{apiUrl}}/colaboradores
 Content-Type: application/json
 
 {
- "_id": "62313ad4979154f743b60f12",
- "nome": "Jaqson alterado",
- "email": "jaqson@teste.com",
- "senha": "321"
+ "_id": "6271c556e10e1e2a9994fc0f",
+ "nome": "Eduardo Bonamigo Bianchetti",
+ "email": "185961@upf.br",
+ "senha": "123"
 }
 
 ###
@@ -39,4 +42,14 @@ Content-Type: application/json
 # Obter colaborador filtrando
 GET {{apiUrl}}/colaboradores/filtro/admin
 Content-Type: application/json
+###
+
+# Autenticação de colaborador
+POST {{apiUrl}}/colaboradores/login
+Content-Type: application/json
+
+{
+ "email": "185961@upf.br",
+ "senha": "123"
+}
 ###
