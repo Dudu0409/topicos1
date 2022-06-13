@@ -1,4 +1,4 @@
-mongod --port 27018 --dbpath C:\Users\185961\Documents\topicos1\mongo\baserequisicoes --auth
+mongod --port 27018 --dbpath C:\Users\185961\Documents\topicos1\mongo\baserequisicoes --auth --repair
 rem mongod --port 27018 --dbpath C:\Users\david\Documents\topicos1\mongo\baserequisicoes --auth
 
 rem mongo --port 27018 / sem autenticação

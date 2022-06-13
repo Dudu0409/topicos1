@@ -168,7 +168,7 @@ const RequisicaoForm = (props) => {
                 {...register("tipoRequisicao", {
                   required: {
                     value: true,
-                    message: "O Tipo de Requisição é obrigatório",
+                    message: "O Tipo de Requisição é obrigatório!",
                   },
                   maxLength: {
                     value: 100,
@@ -178,7 +178,7 @@ const RequisicaoForm = (props) => {
                   minLength: {
                     value: 2,
                     message:
-                      "O Tipo de Requisição deve ter no mínimo 10 caracteres!",
+                      "O Tipo de Requisição deve ter no mínimo 2 caracteres!",
                   },
                 })}
                 value={props.requisicao.tipoRequisicao}
@@ -214,7 +214,7 @@ const RequisicaoForm = (props) => {
                 {...register("solicitante", {
                   required: {
                     value: true,
-                    message: "O solicitante é obrigatório",
+                    message: "O solicitante é obrigatório!",
                   },
                   maxLength: {
                     value: 100,
@@ -222,7 +222,7 @@ const RequisicaoForm = (props) => {
                   },
                   minLength: {
                     value: 2,
-                    message: "O status deve ter no mínimo 10 caracteres!",
+                    message: "O solicitante deve ter no mínimo 2 caracteres!",
                   },
                 })}
                 value={props.requisicao.solicitante}
