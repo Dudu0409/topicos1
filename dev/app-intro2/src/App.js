@@ -19,7 +19,7 @@ const AndamentoCon = lazy(() => import("./pages/andamento/AndamentoCon"));
 
 sessionStorage.setItem(
   "token",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjcxYzU1NmUxMGUxZTJhOTk5NGZjMGYiLCJub21lIjoiRWR1YXJkbyBCb25hbWlnbyBCaWFuY2hldHRpIiwiaWF0IjoxNjU1MDkxNjE1LCJleHAiOjE2NTUwOTUyMTV9.b3VVGNSWs269vqcKWd9Umapy1ca2tMP5sGayfHUFlAc"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjcxYzU1NmUxMGUxZTJhOTk5NGZjMGYiLCJub21lIjoiRWR1YXJkbyBCb25hbWlnbyBCaWFuY2hldHRpIiwiaWF0IjoxNjU1MjE4OTgwLCJleHAiOjE2NTUyMjI1ODB9.HomqQllJQvzrM5iXqC-CW78bLkbE9a9c8pumaSmIqp8"
 );
 
 function App() {
@@ -70,17 +70,17 @@ function Menu() {
           },
         },
         {
-          label: "Requisições",
-          icon: "pi pi-fw pi-ticket",
-          command: () => {
-            navigate("/requisicoes");
-          },
-        },
-        {
           label: "Tipos de Requisições",
           icon: "pi pi-fw pi-bars",
           command: () => {
             navigate("/tiposRequisicoes");
+          },
+        },
+        {
+          label: "Requisições",
+          icon: "pi pi-fw pi-ticket",
+          command: () => {
+            navigate("/requisicoes");
           },
         },
         {

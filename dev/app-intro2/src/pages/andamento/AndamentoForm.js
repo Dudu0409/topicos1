@@ -38,11 +38,15 @@ const AndamentoForm = (props) => {
 
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm();
+  const onSubmit = (data) => {
+    props.salvar();
+  };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div style={{ padding: 15 }}>
         <div>
           <h5 style={{ textAlign: "center" }}>Cadastro de Andamentos</h5>
@@ -121,22 +125,8 @@ const AndamentoForm = (props) => {
               style={{ textAlign: "center" }}
             >
               <Dropdown
-                name="Atividade"
+                name="atividade"
                 placeholder="Atividade..."
-                {...register("atividade", {
-                  required: {
-                    value: true,
-                    message: "A Atividade é obrigatória!",
-                  },
-                  maxLength: {
-                    value: 100,
-                    message: "A Atividade pode ter no máximo 100 caracteres!",
-                  },
-                  minLength: {
-                    value: 2,
-                    message: "A Atividade deve ter no mínimo 2 caracteres!",
-                  },
-                })}
                 value={props.andamento.atividade}
                 options={atividade}
                 onChange={handleInputChange}
@@ -144,18 +134,6 @@ const AndamentoForm = (props) => {
                 optionValue="_id"
                 editable
               />
-              {errors.atividade && (
-                <span
-                  style={{
-                    color: "red",
-                    fontSize: 12,
-                    textAlign: "left",
-                    fontStyle: "italic",
-                  }}
-                >
-                  {errors.atividade.message}
-                </span>
-              )}
             </div>
           </div>
           <br />
@@ -167,20 +145,6 @@ const AndamentoForm = (props) => {
               <Dropdown
                 name="colaborador"
                 placeholder="Colaborador..."
-                {...register("colaborador", {
-                  required: {
-                    value: true,
-                    message: "O colaborador é obrigatório!",
-                  },
-                  maxLength: {
-                    value: 100,
-                    message: "O colaborador pode ter no máximo 100 caracteres!",
-                  },
-                  minLength: {
-                    value: 2,
-                    message: "O colaborador deve ter no mínimo 2 caracteres!",
-                  },
-                })}
                 value={props.andamento.colaborador}
                 options={colaborador}
                 onChange={handleInputChange}
@@ -188,18 +152,6 @@ const AndamentoForm = (props) => {
                 optionValue="_id"
                 editable
               />
-              {errors.colaborador && (
-                <span
-                  style={{
-                    color: "red",
-                    fontSize: 12,
-                    textAlign: "left",
-                    fontStyle: "italic",
-                  }}
-                >
-                  {errors.colaborador.message}
-                </span>
-              )}
             </div>
           </div>
           <div style={{ textAlign: "center" }}>

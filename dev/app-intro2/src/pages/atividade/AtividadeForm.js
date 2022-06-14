@@ -38,11 +38,15 @@ const AtividadeForm = (props) => {
 
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm();
+  const onSubmit = (data) => {
+    props.salvar();
+  };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div style={{ padding: 15 }}>
         <div>
           <h5 style={{ textAlign: "center" }}>Cadastro de Atividades</h5>
@@ -58,8 +62,8 @@ const AtividadeForm = (props) => {
                     message: "O título pode ter no máximo 100 caracteres!",
                   },
                   minLength: {
-                    value: 10,
-                    message: "O título deve ter no mínimo 10 caracteres!",
+                    value: 2,
+                    message: "O título deve ter no mínimo 2 caracteres!",
                   },
                 })}
                 defaultValue={props.atividade.titulo}
@@ -118,8 +122,8 @@ const AtividadeForm = (props) => {
                     message: "O status pode ter no máximo 100 caracteres!",
                   },
                   minLength: {
-                    value: 10,
-                    message: "O status deve ter no mínimo 10 caracteres!",
+                    value: 2,
+                    message: "O status deve ter no mínimo 2 caracteres!",
                   },
                 })}
                 defaultValue={props.atividade.status}
@@ -177,20 +181,6 @@ const AtividadeForm = (props) => {
               <Dropdown
                 name="requisicao"
                 placeholder="Requisição..."
-                {...register("requisicao", {
-                  required: {
-                    value: true,
-                    message: "A Requisição é obrigatória!",
-                  },
-                  maxLength: {
-                    value: 100,
-                    message: "A Requisição pode ter no máximo 100 caracteres!",
-                  },
-                  minLength: {
-                    value: 2,
-                    message: "A Requisição deve ter no mínimo 2 caracteres!",
-                  },
-                })}
                 value={props.atividade.requisicao}
                 options={requisicao}
                 onChange={handleInputChange}
@@ -198,18 +188,6 @@ const AtividadeForm = (props) => {
                 optionValue="_id"
                 editable
               />
-              {errors.requisicao && (
-                <span
-                  style={{
-                    color: "red",
-                    fontSize: 12,
-                    textAlign: "left",
-                    fontStyle: "italic",
-                  }}
-                >
-                  {errors.requisicao.message}
-                </span>
-              )}
             </div>
           </div>
           <br />
@@ -221,20 +199,6 @@ const AtividadeForm = (props) => {
               <Dropdown
                 name="colaborador"
                 placeholder="Colaborador..."
-                {...register("colaborador", {
-                  required: {
-                    value: true,
-                    message: "O colaborador é obrigatório!",
-                  },
-                  maxLength: {
-                    value: 100,
-                    message: "O colaborador pode ter no máximo 100 caracteres!",
-                  },
-                  minLength: {
-                    value: 2,
-                    message: "O colaborador deve ter no mínimo 2 caracteres!",
-                  },
-                })}
                 value={props.atividade.colaborador}
                 options={colaborador}
                 onChange={handleInputChange}
@@ -242,18 +206,6 @@ const AtividadeForm = (props) => {
                 optionValue="_id"
                 editable
               />
-              {errors.colaborador && (
-                <span
-                  style={{
-                    color: "red",
-                    fontSize: 12,
-                    textAlign: "left",
-                    fontStyle: "italic",
-                  }}
-                >
-                  {errors.colaborador.message}
-                </span>
-              )}
             </div>
           </div>
           <div style={{ textAlign: "center" }}>

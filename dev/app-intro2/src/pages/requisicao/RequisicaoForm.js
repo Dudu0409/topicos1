@@ -38,11 +38,15 @@ const RequisicaoForm = (props) => {
 
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm();
+  const onSubmit = (data) => {
+    props.salvar();
+  };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div style={{ padding: 15 }}>
         <div>
           <h5 style={{ textAlign: "center" }}>Cadastro de Requisições</h5>
@@ -165,22 +169,6 @@ const RequisicaoForm = (props) => {
               <Dropdown
                 name="tipoRequisicao"
                 placeholder="Tipo de Requisição..."
-                {...register("tipoRequisicao", {
-                  required: {
-                    value: true,
-                    message: "O Tipo de Requisição é obrigatório!",
-                  },
-                  maxLength: {
-                    value: 100,
-                    message:
-                      "O Tipo de Requisição pode ter no máximo 100 caracteres!",
-                  },
-                  minLength: {
-                    value: 2,
-                    message:
-                      "O Tipo de Requisição deve ter no mínimo 2 caracteres!",
-                  },
-                })}
                 value={props.requisicao.tipoRequisicao}
                 options={tipoRequisicao}
                 onChange={handleInputChange}
@@ -188,18 +176,6 @@ const RequisicaoForm = (props) => {
                 optionValue="_id"
                 editable
               />
-              {errors.tipoRequisicao && (
-                <span
-                  style={{
-                    color: "red",
-                    fontSize: 12,
-                    textAlign: "left",
-                    fontStyle: "italic",
-                  }}
-                >
-                  {errors.tipoRequisicao.message}
-                </span>
-              )}
             </div>
           </div>
           <br />
@@ -211,20 +187,6 @@ const RequisicaoForm = (props) => {
               <Dropdown
                 name="solicitante"
                 placeholder="Solicitante..."
-                {...register("solicitante", {
-                  required: {
-                    value: true,
-                    message: "O solicitante é obrigatório!",
-                  },
-                  maxLength: {
-                    value: 100,
-                    message: "O solicitante pode ter no máximo 100 caracteres!",
-                  },
-                  minLength: {
-                    value: 2,
-                    message: "O solicitante deve ter no mínimo 2 caracteres!",
-                  },
-                })}
                 value={props.requisicao.solicitante}
                 options={solicitante}
                 onChange={handleInputChange}
@@ -232,18 +194,6 @@ const RequisicaoForm = (props) => {
                 optionValue="_id"
                 editable
               />
-              {errors.solicitante && (
-                <span
-                  style={{
-                    color: "red",
-                    fontSize: 12,
-                    textAlign: "left",
-                    fontStyle: "italic",
-                  }}
-                >
-                  {errors.solicitante.message}
-                </span>
-              )}
             </div>
           </div>
           <div style={{ textAlign: "center" }}>
