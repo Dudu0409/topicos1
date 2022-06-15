@@ -1,11 +1,12 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Menubar } from "primereact/menubar";
+import LoginForm from "./pages/login/LoginForm";
 
 const Home = lazy(() => import("./pages/home/Home"));
 const ColaboradorCon = lazy(() => import("./pages/colaborador/ColaboradorCon"));
@@ -17,12 +18,14 @@ const RequisicaoCon = lazy(() => import("./pages/requisicao/RequisicaoCon"));
 const AtividadeCon = lazy(() => import("./pages/atividade/AtividadeCon"));
 const AndamentoCon = lazy(() => import("./pages/andamento/AndamentoCon"));
 
-sessionStorage.setItem(
-  "token",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE5MTg2M2E5NTI5YmU0ZDM3OTBjOGIiLCJub21lIjoiRWR1YXJkbyBCb25hbWlnbyBCaWFuY2hldHRpIiwiaWF0IjoxNjU1MjUyNjc2LCJleHAiOjE2NTUyNTYyNzZ9.pc3zPv0aoyuSyLDg_mu16sY-z-9HVFPkYTo8cttISZE"
-);
-
 function App() {
+  const [token, setToken] = useState([]);
+  useEffect(() => {
+    setToken(sessionStorage.getItem("token"));
+  }, []);
+  if (!token || token <= "") {
+    return <LoginForm />;
+  }
   return (
     <BrowserRouter>
       <Menu />
@@ -102,6 +105,10 @@ function Menu() {
     {
       label: "Sair",
       icon: "pi pi-fw pi-power-off",
+      command: () => {
+        sessionStorage.setItem("token", "");
+      },
+      url: "/",
     },
   ];
 

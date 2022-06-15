@@ -55,6 +55,7 @@ const AndamentoList = (props) => {
           selection={props.andamento}
           onSelectionChange={(e) => props.setAndamento(e.value)}
         >
+          <Column field="_id" header="Id" sortable></Column>
           <Column
             field="dataHora"
             header="Data e Hora"
