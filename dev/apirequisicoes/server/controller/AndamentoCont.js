@@ -4,8 +4,8 @@ module.exports = {
     Andamento.find((err, objetos) => {
       err ? res.status(400).send(err) : res.status(200).json(objetos);
     })
-      .populate("Atividade")
-      .populate("Colaborador")
+      .populate("atividade")
+      .populate("colaborador")
       .sort({ titulo: 1 });
   },
 
@@ -30,8 +30,8 @@ module.exports = {
     Andamento.findOne({ _id: req.params.id }, function (err, obj) {
       err ? res.status(400).send(err) : res.status(200).json(obj);
     })
-      .populate("Atividade")
-      .populate("Colaborador")
+      .populate("atividade")
+      .populate("colaborador");
   },
   filtrar: (req, res) => {
     Andamento.find(
@@ -45,8 +45,8 @@ module.exports = {
         err ? res.status(400).send(err) : res.status(200).json(obj);
       }
     )
-      .populate("Atividade")
-      .populate("Colaborador")
+      .populate("atividade")
+      .populate("colaborador")
       .sort({ titulo: -1 });
   },
 };

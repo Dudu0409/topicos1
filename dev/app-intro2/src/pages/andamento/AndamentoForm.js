@@ -3,13 +3,13 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
 import { Calendar } from "primereact/calendar";
-import { Dropdown } from "primereact/dropdown";
+import { AutoComplete } from "primereact/autocomplete";
 import ColaboradorSrv from "../colaborador/ColaboradorSrv";
 import AtividadeSrv from "../atividade/AtividadeSrv";
 
 const AndamentoForm = (props) => {
-  const [atividade, setAtividade] = useState([]);
-  const [colaborador, setColaborador] = useState([]);
+  const [atividades, setAtividades] = useState([]);
+  const [colaboradores, setColaboradores] = useState([]);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     props.setAndamento({ ...props.andamento, [name]: value });
@@ -23,7 +23,7 @@ const AndamentoForm = (props) => {
   const onClickAtualizarColaborador = () => {
     ColaboradorSrv.listar()
       .then((response) => {
-        setColaborador(response.data);
+        setColaboradores(response.data);
       })
       .catch((e) => {});
   };
@@ -31,7 +31,7 @@ const AndamentoForm = (props) => {
   const onClickAtualizarAtividade = () => {
     AtividadeSrv.listar()
       .then((response) => {
-        setAtividade(response.data);
+        setAtividades(response.data);
       })
       .catch((e) => {});
   };
@@ -43,6 +43,55 @@ const AndamentoForm = (props) => {
   } = useForm();
   const onSubmit = (data) => {
     props.salvar();
+  };
+  const [filteredColaboradores, setFilteredColaboradores] = useState(null);
+  const [filteredAtividades, setFilteredAtividades] = useState(null);
+  const searchColaborador = (event) => {
+    setTimeout(() => {
+      let _filteredColaboradores;
+      if (!event.query.trim().length) {
+        _filteredColaboradores = [...colaboradores];
+      } else {
+        _filteredColaboradores = colaboradores.filter((colaborador) => {
+          return colaborador.nome
+            .toLowerCase()
+            .startsWith(event.query.toLowerCase());
+        });
+      }
+
+      setFilteredColaboradores(_filteredColaboradores);
+    }, 250);
+  };
+  const searchAtividade = (event) => {
+    setTimeout(() => {
+      let _filteredAtividades;
+      if (!event.query.trim().length) {
+        _filteredAtividades = [...atividades];
+      } else {
+        _filteredAtividades = atividades.filter((atividade) => {
+          return atividade.titulo
+            .toLowerCase()
+            .startsWith(event.query.toLowerCase());
+        });
+      }
+
+      setFilteredAtividades(_filteredAtividades);
+    }, 250);
+  };
+
+  const itemTemplate1 = (item) => {
+    return (
+      <div>
+        <div>{item.nome}</div>
+      </div>
+    );
+  };
+  const itemTemplate2 = (item) => {
+    return (
+      <div>
+        <div>{item.titulo}</div>
+      </div>
+    );
   };
 
   return (
@@ -124,15 +173,17 @@ const AndamentoForm = (props) => {
               className="field col-4 md:col-4"
               style={{ textAlign: "center" }}
             >
-              <Dropdown
+              <AutoComplete
                 name="atividade"
-                placeholder="Atividade..."
                 value={props.andamento.atividade}
-                options={atividade}
+                suggestions={filteredAtividades}
+                completeMethod={searchAtividade}
                 onChange={handleInputChange}
-                optionLabel="titulo"
-                optionValue="_id"
-                editable
+                field="titulo"
+                dropdown
+                forceSelection
+                itemTemplate={itemTemplate2}
+                placeholder="Atividade..."
               />
             </div>
           </div>
@@ -142,15 +193,17 @@ const AndamentoForm = (props) => {
               className="field col-4 md:col-4"
               style={{ textAlign: "center" }}
             >
-              <Dropdown
+              <AutoComplete
                 name="colaborador"
-                placeholder="Colaborador..."
                 value={props.andamento.colaborador}
-                options={colaborador}
+                suggestions={filteredColaboradores}
+                completeMethod={searchColaborador}
                 onChange={handleInputChange}
-                optionLabel="nome"
-                optionValue="_id"
-                editable
+                field="nome"
+                dropdown
+                forceSelection
+                itemTemplate={itemTemplate1}
+                placeholder="Colaborador..."
               />
             </div>
           </div>

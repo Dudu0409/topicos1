@@ -6,12 +6,12 @@ const AtividadeSchema = new mongoose.Schema({
   prazo: { type: Date, required: true },
   agendaInicio: { type: Date, required: true },
   dataHoraTermino: { type: Date, required: true },
-  Requisicao: {
+  requisicao: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Requisicao",
     require: true,
   },
-  Colaborador: {
+  colaborador: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Colaborador",
     require: true,

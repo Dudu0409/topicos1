@@ -3,13 +3,13 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
 import { Calendar } from "primereact/calendar";
-import { Dropdown } from "primereact/dropdown";
+import { AutoComplete } from "primereact/autocomplete";
 import SolicitanteSrv from "../solicitante/SolicitanteSrv";
 import TipoRequisicaoSrv from "../tipoRequisicao/TipoRequisicaoSrv";
 
 const RequisicaoForm = (props) => {
-  const [tipoRequisicao, setTipoRequisicao] = useState([]);
-  const [solicitante, setSolicitante] = useState([]);
+  const [tiposRequisicoes, setTiposRequisicoes] = useState([]);
+  const [solicitantes, setSolicitantes] = useState([]);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     props.setRequisicao({ ...props.requisicao, [name]: value });
@@ -23,7 +23,7 @@ const RequisicaoForm = (props) => {
   const onClickAtualizarSolicitante = () => {
     SolicitanteSrv.listar()
       .then((response) => {
-        setSolicitante(response.data);
+        setSolicitantes(response.data);
       })
       .catch((e) => {});
   };
@@ -31,7 +31,7 @@ const RequisicaoForm = (props) => {
   const onClickAtualizarTipo = () => {
     TipoRequisicaoSrv.listar()
       .then((response) => {
-        setTipoRequisicao(response.data);
+        setTiposRequisicoes(response.data);
       })
       .catch((e) => {});
   };
@@ -43,6 +43,59 @@ const RequisicaoForm = (props) => {
   } = useForm();
   const onSubmit = (data) => {
     props.salvar();
+  };
+  const [filteredTiposRequisicoes, setFilteredTiposRequisicoes] =
+    useState(null);
+  const [filteredSolicitantes, setFilteredSolicitantes] = useState(null);
+
+  const searchTipoRequisicao = (event) => {
+    setTimeout(() => {
+      let _filteredTiposRequisicoes;
+      if (!event.query.trim().length) {
+        _filteredTiposRequisicoes = [...tiposRequisicoes];
+      } else {
+        _filteredTiposRequisicoes = tiposRequisicoes.filter(
+          (tipoRequisicao) => {
+            return tipoRequisicao.descricao
+              .toLowerCase()
+              .startsWith(event.query.toLowerCase());
+          }
+        );
+      }
+
+      setFilteredTiposRequisicoes(_filteredTiposRequisicoes);
+    }, 250);
+  };
+  const searchSolicitante = (event) => {
+    setTimeout(() => {
+      let _filteredSolicitantes;
+      if (!event.query.trim().length) {
+        _filteredSolicitantes = [...solicitantes];
+      } else {
+        _filteredSolicitantes = solicitantes.filter((solicitante) => {
+          return solicitante.nome
+            .toLowerCase()
+            .startsWith(event.query.toLowerCase());
+        });
+      }
+
+      setFilteredSolicitantes(_filteredSolicitantes);
+    }, 250);
+  };
+
+  const itemTemplate1 = (item) => {
+    return (
+      <div>
+        <div>{item.descricao}</div>
+      </div>
+    );
+  };
+  const itemTemplate2 = (item) => {
+    return (
+      <div>
+        <div>{item.nome}</div>
+      </div>
+    );
   };
 
   return (
@@ -134,8 +187,8 @@ const RequisicaoForm = (props) => {
                     message: "O status pode ter no máximo 100 caracteres!",
                   },
                   minLength: {
-                    value: 10,
-                    message: "O status deve ter no mínimo 10 caracteres!",
+                    value: 2,
+                    message: "O status deve ter no mínimo 2 caracteres!",
                   },
                 })}
                 defaultValue={props.requisicao.status}
@@ -166,15 +219,17 @@ const RequisicaoForm = (props) => {
               className="field col-4 md:col-4"
               style={{ textAlign: "center" }}
             >
-              <Dropdown
+              <AutoComplete
                 name="tipoRequisicao"
-                placeholder="Tipo de Requisição..."
                 value={props.requisicao.tipoRequisicao}
-                options={tipoRequisicao}
+                suggestions={filteredTiposRequisicoes}
+                completeMethod={searchTipoRequisicao}
                 onChange={handleInputChange}
-                optionLabel="descricao"
-                optionValue="_id"
-                editable
+                field="descricao"
+                dropdown
+                forceSelection
+                itemTemplate={itemTemplate1}
+                placeholder="Tipo de Requisição..."
               />
             </div>
           </div>
@@ -184,15 +239,17 @@ const RequisicaoForm = (props) => {
               className="field col-4 md:col-4"
               style={{ textAlign: "center" }}
             >
-              <Dropdown
+              <AutoComplete
                 name="solicitante"
-                placeholder="Solicitante..."
                 value={props.requisicao.solicitante}
-                options={solicitante}
+                suggestions={filteredSolicitantes}
+                completeMethod={searchSolicitante}
                 onChange={handleInputChange}
-                optionLabel="nome"
-                optionValue="_id"
-                editable
+                field="nome"
+                dropdown
+                forceSelection
+                itemTemplate={itemTemplate2}
+                placeholder="Solicitante..."
               />
             </div>
           </div>

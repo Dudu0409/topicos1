@@ -3,13 +3,13 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { useForm } from "react-hook-form";
 import { Calendar } from "primereact/calendar";
-import { Dropdown } from "primereact/dropdown";
+import { AutoComplete } from "primereact/autocomplete";
 import ColaboradorSrv from "../colaborador/ColaboradorSrv";
 import RequisicaoSrv from "../requisicao/RequisicaoSrv";
 
 const AtividadeForm = (props) => {
-  const [requisicao, setRequisicao] = useState([]);
-  const [colaborador, setColaborador] = useState([]);
+  const [requisicoes, setRequisicoes] = useState([]);
+  const [colaboradores, setColaboradores] = useState([]);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     props.setAtividade({ ...props.atividade, [name]: value });
@@ -23,7 +23,7 @@ const AtividadeForm = (props) => {
   const onClickAtualizarColaborador = () => {
     ColaboradorSrv.listar()
       .then((response) => {
-        setColaborador(response.data);
+        setColaboradores(response.data);
       })
       .catch((e) => {});
   };
@@ -31,7 +31,7 @@ const AtividadeForm = (props) => {
   const onClickAtualizarRequisicao = () => {
     RequisicaoSrv.listar()
       .then((response) => {
-        setRequisicao(response.data);
+        setRequisicoes(response.data);
       })
       .catch((e) => {});
   };
@@ -43,6 +43,56 @@ const AtividadeForm = (props) => {
   } = useForm();
   const onSubmit = (data) => {
     props.salvar();
+  };
+
+  const [filteredColaboradores, setFilteredColaboradores] = useState(null);
+  const [filteredRequisicoes, setFilteredRequisicoes] = useState(null);
+  const searchColaborador = (event) => {
+    setTimeout(() => {
+      let _filteredColaboradores;
+      if (!event.query.trim().length) {
+        _filteredColaboradores = [...colaboradores];
+      } else {
+        _filteredColaboradores = colaboradores.filter((colaborador) => {
+          return colaborador.nome
+            .toLowerCase()
+            .startsWith(event.query.toLowerCase());
+        });
+      }
+
+      setFilteredColaboradores(_filteredColaboradores);
+    }, 250);
+  };
+  const searchRequisicao = (event) => {
+    setTimeout(() => {
+      let _filteredRequisicoes;
+      if (!event.query.trim().length) {
+        _filteredRequisicoes = [...requisicoes];
+      } else {
+        _filteredRequisicoes = requisicoes.filter((requisicao) => {
+          return requisicao.titulo
+            .toLowerCase()
+            .startsWith(event.query.toLowerCase());
+        });
+      }
+
+      setFilteredRequisicoes(_filteredRequisicoes);
+    }, 250);
+  };
+
+  const itemTemplate1 = (item) => {
+    return (
+      <div>
+        <div>{item.nome}</div>
+      </div>
+    );
+  };
+  const itemTemplate2 = (item) => {
+    return (
+      <div>
+        <div>{item.titulo}</div>
+      </div>
+    );
   };
 
   return (
@@ -178,15 +228,17 @@ const AtividadeForm = (props) => {
               className="field col-4 md:col-4"
               style={{ textAlign: "center" }}
             >
-              <Dropdown
+              <AutoComplete
                 name="requisicao"
-                placeholder="Requisição..."
                 value={props.atividade.requisicao}
-                options={requisicao}
+                suggestions={filteredRequisicoes}
+                completeMethod={searchRequisicao}
                 onChange={handleInputChange}
-                optionLabel="titulo"
-                optionValue="_id"
-                editable
+                field="titulo"
+                dropdown
+                forceSelection
+                itemTemplate={itemTemplate2}
+                placeholder="Requisição..."
               />
             </div>
           </div>
@@ -196,15 +248,17 @@ const AtividadeForm = (props) => {
               className="field col-4 md:col-4"
               style={{ textAlign: "center" }}
             >
-              <Dropdown
+              <AutoComplete
                 name="colaborador"
-                placeholder="Colaborador..."
                 value={props.atividade.colaborador}
-                options={colaborador}
+                suggestions={filteredColaboradores}
+                completeMethod={searchColaborador}
                 onChange={handleInputChange}
-                optionLabel="nome"
-                optionValue="_id"
-                editable
+                field="nome"
+                dropdown
+                forceSelection
+                itemTemplate={itemTemplate1}
+                placeholder="Colaborador..."
               />
             </div>
           </div>

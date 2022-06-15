@@ -4,8 +4,8 @@ module.exports = {
     Atividade.find((err, objetos) => {
       err ? res.status(400).send(err) : res.status(200).json(objetos);
     })
-      .populate("Requisicao")
-      .populate("Colaborador")
+      .populate("requisicao")
+      .populate("colaborador")
       .sort({ titulo: 1 });
   },
 
@@ -30,8 +30,8 @@ module.exports = {
     Atividade.findOne({ _id: req.params.id }, function (err, obj) {
       err ? res.status(400).send(err) : res.status(200).json(obj);
     })
-      .populate("Requisicao")
-      .populate("Colaborador")
+      .populate("requisicao")
+      .populate("colaborador");
   },
   filtrar: (req, res) => {
     Atividade.find(
@@ -46,8 +46,8 @@ module.exports = {
         err ? res.status(400).send(err) : res.status(200).json(obj);
       }
     )
-      .populate("Requisicao")
-      .populate("Colaborador")
+      .populate("requisicao")
+      .populate("colaborador")
       .sort({ titulo: -1 });
   },
 };

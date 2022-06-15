@@ -1,5 +1,5 @@
 @apiUrl = http://localhost:3000/api
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjcxYzU1NmUxMGUxZTJhOTk5NGZjMGYiLCJub21lIjoiRWR1YXJkbyBCb25hbWlnbyBCaWFuY2hldHRpIiwiaWF0IjoxNjU1MjE4OTgwLCJleHAiOjE2NTUyMjI1ODB9.HomqQllJQvzrM5iXqC-CW78bLkbE9a9c8pumaSmIqp8
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjcxYzU1NmUxMGUxZTJhOTk5NGZjMGYiLCJub21lIjoiRWR1YXJkbyBCb25hbWlnbyBCaWFuY2hldHRpIiwiaWF0IjoxNjU1MjQ4OTE2LCJleHAiOjE2NTUyNTI1MTZ9.M2L7KNVvv-ROrBmKaV5EbOtGja211RstkLr4aYNx560
 
 # Obter a lista de atividades
 GET {{apiUrl}}/atividades
