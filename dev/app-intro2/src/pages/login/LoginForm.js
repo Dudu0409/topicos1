@@ -54,9 +54,9 @@ const LoginForm = (props) => {
         }}
       >
         <div className="p-fluid grid formgrid">
-          <div className="field col-4 md:col-4">
-            <label htmlFor="email">E-mail</label>
+          <div className="field col-12 md:col-12">
             <InputText
+              placeholder="E-mail..."
               type={"text"}
               id="email"
               className="p-inputtext-sm block mb-2"
@@ -71,9 +71,9 @@ const LoginForm = (props) => {
               <span style={{ color: "red" }}>{errors.email.message}</span>
             )}
           </div>
-          <div className="field col-4 md:col-4">
-            <label htmlFor="senha">Senha</label>
+          <div className="field col-12 md:col-12">
             <InputText
+              placeholder="Senha..."
               type={"password"}
               id="senha"
               className="p-inputtext-sm block mb-2"
@@ -94,7 +94,7 @@ const LoginForm = (props) => {
           icon="pi pi-sign-in"
           type="submit"
           label="Login"
-          className="p-button-text"
+          className="p-button-rounded p-button-info"
         />
       </div>
     </form>
